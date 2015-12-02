@@ -18,9 +18,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-public class SettingsPage extends Page {
+public class PageSettings extends Page {
 
-	public SettingsPage(Stage primaryStage) {
+	public PageSettings(Stage primaryStage) {
 		super(primaryStage);
 	}
 

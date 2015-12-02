@@ -14,9 +14,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class HomePage extends Page {
+public class PageHome extends Page {
 
-	public HomePage(Stage primaryStage) {
+	public PageHome(Stage primaryStage) {
 		super(primaryStage);
 	}
 

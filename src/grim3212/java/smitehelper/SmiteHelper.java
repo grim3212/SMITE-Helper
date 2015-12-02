@@ -1,9 +1,10 @@
 package grim3212.java.smitehelper;
 
-import grim3212.java.smitehelper.gui.HomePage;
+import grim3212.java.smitehelper.gui.PageHome;
+import grim3212.java.smitehelper.gui.PageRandomizer;
+import grim3212.java.smitehelper.gui.PageSettings;
+import grim3212.java.smitehelper.gui.PageStats;
 import grim3212.java.smitehelper.gui.PageUtil;
-import grim3212.java.smitehelper.gui.SettingsPage;
-import grim3212.java.smitehelper.gui.StatsPage;
 import grim3212.java.smitehelper.util.Constants;
 import grim3212.java.smitehelper.util.GodUtil;
 import javafx.application.Application;
@@ -24,9 +25,10 @@ public class SmiteHelper extends Application {
 			GodUtil.createStatistics();
 
 			// Setup all pages
-			new HomePage(primaryStage);
-			new SettingsPage(primaryStage);
-			new StatsPage(primaryStage);
+			new PageHome(primaryStage);
+			new PageStats(primaryStage);
+			new PageRandomizer(primaryStage);
+			new PageSettings(primaryStage);
 
 			// Then start on the Home page
 			PageUtil.switchPage(Constants.HOME_NAME, primaryStage);

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import grim3212.java.smitehelper.gods.BasicGod;
 import grim3212.java.smitehelper.gods.EnumDamageType;
 import grim3212.java.smitehelper.gods.EnumPantheon;
+import grim3212.java.smitehelper.gods.EnumPowerType;
 import grim3212.java.smitehelper.gods.EnumRole;
 
 public class GodUtil {
@@ -31,15 +32,17 @@ public class GodUtil {
 
 	public static ArrayList<BasicGod> gods = new ArrayList<BasicGod>();
 	public static HashMap<EnumRole, ArrayList<BasicGod>> roles = new HashMap<EnumRole, ArrayList<BasicGod>>();
+	public static HashMap<EnumPowerType, ArrayList<BasicGod>> powerTypes = new HashMap<EnumPowerType, ArrayList<BasicGod>>();
 	public static HashMap<EnumPantheon, ArrayList<BasicGod>> pantheons = new HashMap<EnumPantheon, ArrayList<BasicGod>>();
 	public static HashMap<EnumDamageType, ArrayList<BasicGod>> damageTypes = new HashMap<EnumDamageType, ArrayList<BasicGod>>();
 
 	public static HashMap<String, Integer> statistics = new HashMap<String, Integer>();
-	
-	public static void createStatistics(){
+
+	public static void createStatistics() {
 		statistics.put("Gods", gods.size());
 		statistics.put("Roles", EnumRole.values().length);
 		statistics.put("Pantheons", EnumPantheon.values().length);
+		statistics.put("Power Types", EnumPowerType.values().length);
 		statistics.put("Damage Types", EnumDamageType.values().length);
 		statistics.put("Gamemodes", EnumGamemodes.values().length);
 	}
@@ -49,10 +52,32 @@ public class GodUtil {
 		EnumRole role = EnumRole.valueOf(godData[1]);
 		EnumPantheon pantheon = EnumPantheon.valueOf(godData[2]);
 		EnumDamageType damageType = EnumDamageType.valueOf(godData[3]);
-		BasicGod god = new BasicGod(name, role, pantheon, damageType);
+		EnumPowerType powerType = null;
+
+		switch (role) {
+		case Assassin:
+			powerType = EnumPowerType.Physical;
+			break;
+		case Guardian:
+			powerType = EnumPowerType.Magical;
+			break;
+		case Hunter:
+			powerType = EnumPowerType.Physical;
+			break;
+		case Mage:
+			powerType = EnumPowerType.Magical;
+			break;
+		case Warrior:
+			powerType = EnumPowerType.Physical;
+			break;
+		}
+
+		BasicGod god = new BasicGod(name, role, EnumPowerType.Physical, pantheon, damageType);
+
 		gods.add(god);
 		increaseRole(role, god);
 		increasePantheon(pantheon, god);
+		increasePowerType(powerType, god);
 		increaseDamageType(damageType, god);
 	}
 
@@ -73,6 +98,16 @@ public class GodUtil {
 			ArrayList<BasicGod> pantheonGods = new ArrayList<BasicGod>();
 			pantheonGods.add(god);
 			pantheons.put(pantheon, pantheonGods);
+		}
+	}
+
+	public static void increasePowerType(EnumPowerType powerType, BasicGod god) {
+		if (powerTypes.containsKey(powerType)) {
+			powerTypes.get(powerType).add(god);
+		} else {
+			ArrayList<BasicGod> powerTypeGods = new ArrayList<BasicGod>();
+			powerTypeGods.add(god);
+			powerTypes.put(powerType, powerTypeGods);
 		}
 	}
 
