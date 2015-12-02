@@ -4,6 +4,7 @@ import java.util.Random;
 
 import grim3212.java.smitehelper.gods.EnumDamageType;
 import grim3212.java.smitehelper.gods.EnumPantheon;
+import grim3212.java.smitehelper.gods.EnumPowerType;
 import grim3212.java.smitehelper.gods.EnumRole;
 import grim3212.java.smitehelper.util.Constants;
 import grim3212.java.smitehelper.util.EnumGamemodes;
@@ -69,8 +70,9 @@ public class PageRandomizer extends Page {
 		setupAllGodsPane(tabs, currentSelection);
 		setupRolePane(tabs, currentSelection);
 		setupPantheonPane(tabs, currentSelection);
-		setupGamemodePane(tabs, currentSelection);
 		setupDamageTypePane(tabs, currentSelection);
+		setupPowerTypePane(tabs, currentSelection);
+		setupGamemodePane(tabs, currentSelection);
 
 		randCenter.setCenter(tabs);
 
@@ -103,7 +105,7 @@ public class PageRandomizer extends Page {
 
 	public void setupAllGodsPane(TabPane tabPane, Text currentSelection) {
 		Tab allGods = new Tab();
-		allGods.setText("Randomize all Gods");
+		allGods.setText("Randomize (All Gods)");
 
 		VBox container = new VBox();
 		container.setAlignment(Pos.CENTER);
@@ -126,7 +128,7 @@ public class PageRandomizer extends Page {
 
 	public void setupRolePane(TabPane tabPane, Text currentSelection) {
 		Tab roleTab = new Tab();
-		roleTab.setText("Randomize by Role");
+		roleTab.setText("Randomize (Role)");
 
 		HBox container = new HBox(150);
 		container.setAlignment(Pos.CENTER);
@@ -168,7 +170,7 @@ public class PageRandomizer extends Page {
 
 	public void setupPantheonPane(TabPane tabPane, Text currentSelection) {
 		Tab pantheonTab = new Tab();
-		pantheonTab.setText("Randomize by Pantheon");
+		pantheonTab.setText("Randomize (Pantheon)");
 
 		HBox container = new HBox(150);
 		container.setAlignment(Pos.CENTER);
@@ -210,17 +212,17 @@ public class PageRandomizer extends Page {
 
 	public void setupDamageTypePane(TabPane tabPane, Text currentSelection) {
 		Tab damageTypeTab = new Tab();
-		damageTypeTab.setText("Randomize by Damage Type");
+		damageTypeTab.setText("Randomize (Damage Type)");
 
 		HBox container = new HBox(150);
 		container.setAlignment(Pos.CENTER);
 
 		VBox damageTypes = new VBox(10);
 		damageTypes.setAlignment(Pos.CENTER_LEFT);
-		ToggleGroup roleGroup = new ToggleGroup();
+		ToggleGroup damageGroup = new ToggleGroup();
 		for (int i = 0; i < EnumDamageType.values().length; i++) {
 			RadioButton radioBtn = new RadioButton(EnumDamageType.values()[i].name());
-			radioBtn.setToggleGroup(roleGroup);
+			radioBtn.setToggleGroup(damageGroup);
 			radioBtn.setUserData(EnumDamageType.values()[i]);
 			damageTypes.getChildren().add(radioBtn);
 		}
@@ -230,9 +232,9 @@ public class PageRandomizer extends Page {
 		randomizeBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if (roleGroup.getSelectedToggle() != null) {
-					int godNum = rand.nextInt(GodUtil.damageTypes.get(roleGroup.getSelectedToggle().getUserData()).size());
-					currentSelection.setText("God Selected: " + GodUtil.damageTypes.get(roleGroup.getSelectedToggle().getUserData()).get(godNum).getName());
+				if (damageGroup.getSelectedToggle() != null) {
+					int godNum = rand.nextInt(GodUtil.damageTypes.get(damageGroup.getSelectedToggle().getUserData()).size());
+					currentSelection.setText("God Selected: " + GodUtil.damageTypes.get(damageGroup.getSelectedToggle().getUserData()).get(godNum).getName());
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("God Randomizer | By Damage Type");
@@ -250,9 +252,51 @@ public class PageRandomizer extends Page {
 		tabPane.getTabs().add(damageTypeTab);
 	}
 
+	public void setupPowerTypePane(TabPane tabPane, Text currentSelection) {
+		Tab powerTypeTab = new Tab();
+		powerTypeTab.setText("Randomize (Power Type)");
+
+		HBox container = new HBox(150);
+		container.setAlignment(Pos.CENTER);
+
+		VBox powerTypes = new VBox(10);
+		powerTypes.setAlignment(Pos.CENTER_LEFT);
+		ToggleGroup powerGroup = new ToggleGroup();
+		for (int i = 0; i < EnumPowerType.values().length; i++) {
+			RadioButton radioBtn = new RadioButton(EnumPowerType.values()[i].name());
+			radioBtn.setToggleGroup(powerGroup);
+			radioBtn.setUserData(EnumPowerType.values()[i]);
+			powerTypes.getChildren().add(radioBtn);
+		}
+
+		Button randomizeBtn = new Button("Randomize");
+		randomizeBtn.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		randomizeBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				if (powerGroup.getSelectedToggle() != null) {
+					int godNum = rand.nextInt(GodUtil.powerTypes.get(powerGroup.getSelectedToggle().getUserData()).size());
+					currentSelection.setText("God Selected: " + GodUtil.powerTypes.get(powerGroup.getSelectedToggle().getUserData()).get(godNum).getName());
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("God Randomizer | By Power Type");
+					alert.setHeaderText("No power type selected!");
+					alert.setContentText("Please select a power type from the left side and then click randomize");
+
+					alert.showAndWait();
+				}
+			}
+		});
+
+		container.getChildren().addAll(powerTypes, randomizeBtn);
+
+		powerTypeTab.setContent(container);
+		tabPane.getTabs().add(powerTypeTab);
+	}
+
 	public void setupGamemodePane(TabPane tabPane, Text currentSelection) {
 		Tab gamemodeTab = new Tab();
-		gamemodeTab.setText("Randomize by Gamemode");
+		gamemodeTab.setText("Randomize (Gamemode)");
 
 		HBox container = new HBox(150);
 		container.setAlignment(Pos.CENTER);
