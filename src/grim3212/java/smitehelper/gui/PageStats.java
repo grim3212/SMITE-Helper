@@ -1,15 +1,10 @@
 package grim3212.java.smitehelper.gui;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import grim3212.java.smitehelper.gods.BasicGod;
-import grim3212.java.smitehelper.gods.EnumDamageType;
 import grim3212.java.smitehelper.gods.EnumPantheon;
-import grim3212.java.smitehelper.gods.EnumPowerType;
 import grim3212.java.smitehelper.gods.EnumRole;
 import grim3212.java.smitehelper.util.Constants;
 import grim3212.java.smitehelper.util.EnumGamemodes;
@@ -59,9 +54,9 @@ public class PageStats extends Page {
 		titleBox.getChildren().add(statsTitle);
 		statsBorderPane.setTop(titleBox);
 
-		HBox centerBox = new HBox(2);
+		HBox centerBox = new HBox();
 		centerBox.setAlignment(Pos.CENTER);
-		centerBox.getChildren().addAll(getRoleTable(), getPantheonTable(), getGamemodeTable(), getTypeTable(), getStatisticsTable());
+		centerBox.getChildren().addAll(getRoleTable(), getPantheonTable(), getGamemodeTable(), getStatisticsTable());
 		HBox.setHgrow(centerBox, Priority.ALWAYS);
 		statsBorderPane.setCenter(centerBox);
 
@@ -162,77 +157,6 @@ public class PageStats extends Page {
 	}
 
 	@SuppressWarnings("unchecked")
-	public TableView<Entry<? extends Enum<?>, ArrayList<BasicGod>>> getTypeTable() {
-		TableColumn<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> damageColumn = new TableColumn<>("Damage Type");
-		TableColumn<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> powerColumn = new TableColumn<>("Power Type");
-
-		TableColumn<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> damageTypeColumn = new TableColumn<>("Type");
-		damageTypeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> p) {
-				if (p.getValue().getKey() instanceof EnumDamageType) {
-					return new SimpleStringProperty(p.getValue().getKey().name());
-				} else {
-					return new SimpleStringProperty("");
-				}
-			}
-		});
-
-		TableColumn<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> amountColumn = new TableColumn<>("Amount");
-		amountColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> p) {
-				if (p.getValue().getKey() instanceof EnumDamageType) {
-					return new SimpleStringProperty(((Integer) p.getValue().getValue().size()).toString());
-				} else {
-					return new SimpleStringProperty("");
-				}
-			}
-		});
-
-		damageColumn.getColumns().addAll(damageTypeColumn, amountColumn);
-
-		TableColumn<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> powerTypeColumn = new TableColumn<>("Type");
-		powerTypeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> p) {
-				if (p.getValue().getKey() instanceof EnumPowerType) {
-					return new SimpleStringProperty(p.getValue().getKey().name());
-				} else {
-					return new SimpleStringProperty("");
-				}
-			}
-		});
-
-		TableColumn<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> powerTypeAmountColumn = new TableColumn<>("Amount");
-		powerTypeAmountColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Entry<? extends Enum<?>, ArrayList<BasicGod>>, String> p) {
-				if (p.getValue().getKey() instanceof EnumPowerType) {
-					return new SimpleStringProperty(((Integer) p.getValue().getValue().size()).toString());
-				} else {
-					return null;
-				}
-			}
-		});
-
-		powerColumn.getColumns().addAll(powerTypeColumn, powerTypeAmountColumn);
-
-		ArrayList<Map.Entry<? extends Enum<?>, ArrayList<BasicGod>>> list = new ArrayList<>();
-		list.addAll(GodUtil.damageTypes.entrySet());
-		list.addAll(GodUtil.powerTypes.entrySet());
-
-		ObservableList<Map.Entry<? extends Enum<?>, ArrayList<BasicGod>>> data = FXCollections.observableArrayList(list);
-
-		final TableView<Entry<? extends Enum<?>, ArrayList<BasicGod>>> statisticTable = new TableView<>();
-		statisticTable.getColumns().setAll(damageColumn, powerColumn);
-		statisticTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		HBox.setHgrow(statisticTable, Priority.ALWAYS);
-
-		return statisticTable;
-	}
-
-	@SuppressWarnings("unchecked")
 	public TableView<Map.Entry<String, Integer>> getStatisticsTable() {
 		TableColumn<Map.Entry<String, Integer>, String> statisticColumn = new TableColumn<>("Statistic");
 		statisticColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, Integer>, String>, ObservableValue<String>>() {
@@ -254,7 +178,7 @@ public class PageStats extends Page {
 		final TableView<Map.Entry<String, Integer>> statisticTable = new TableView<>(items);
 		statisticTable.getColumns().setAll(statisticColumn, amountColumn);
 		statisticTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		statisticTable.getSortOrder().add(amountColumn);
+		statisticTable.getSortOrder().add(statisticColumn);
 		HBox.setHgrow(statisticTable, Priority.ALWAYS);
 
 		return statisticTable;

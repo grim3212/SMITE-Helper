@@ -43,7 +43,11 @@ public class GodUtil {
 		statistics.put("Roles", EnumRole.values().length);
 		statistics.put("Pantheons", EnumPantheon.values().length);
 		statistics.put("Power Types", EnumPowerType.values().length);
+		statistics.put("# of " + EnumPowerType.Magical + " gods", powerTypes.get(EnumPowerType.Magical).size());
+		statistics.put("# of " + EnumPowerType.Physical + " gods", powerTypes.get(EnumPowerType.Physical).size());
 		statistics.put("Damage Types", EnumDamageType.values().length);
+		statistics.put("# of " + EnumDamageType.Melee + " gods", damageTypes.get(EnumDamageType.Melee).size());
+		statistics.put("# of " + EnumDamageType.Ranged + " gods", damageTypes.get(EnumDamageType.Ranged).size());
 		statistics.put("Gamemodes", EnumGamemodes.values().length);
 	}
 
