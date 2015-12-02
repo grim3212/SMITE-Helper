@@ -29,6 +29,7 @@ public class SmiteHelper extends Application {
 			new PageStats(primaryStage);
 			new PageRandomizer(primaryStage);
 			new PageSettings(primaryStage);
+			// TODO: Add page for item and gamemode info
 
 			// Then start on the Home page
 			PageUtil.switchPage(Constants.HOME_NAME, primaryStage);
