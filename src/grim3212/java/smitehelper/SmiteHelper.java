@@ -1,5 +1,6 @@
 package grim3212.java.smitehelper;
 
+import grim3212.java.smitehelper.gui.PageGodInfo;
 import grim3212.java.smitehelper.gui.PageHome;
 import grim3212.java.smitehelper.gui.PageRandomizer;
 import grim3212.java.smitehelper.gui.PageSettings;
@@ -28,6 +29,7 @@ public class SmiteHelper extends Application {
 			new PageHome(primaryStage);
 			new PageStats(primaryStage);
 			new PageRandomizer(primaryStage);
+			new PageGodInfo(primaryStage);
 			new PageSettings(primaryStage);
 			// TODO: Add page for item and gamemode info
 
