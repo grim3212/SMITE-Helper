@@ -87,41 +87,95 @@ public class PageGodInfo extends Page {
 
 	@SuppressWarnings("unchecked")
 	public TableView<BasicGod> getGodTable() {
-		TableColumn<BasicGod, String> roleNameColumn = new TableColumn<>("Name");
-		roleNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, String>, ObservableValue<String>>() {
+		TableColumn<BasicGod, String> godNameColumn = new TableColumn<>("Name");
+		godNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(TableColumn.CellDataFeatures<BasicGod, String> p) {
 				return new SimpleStringProperty(p.getValue().getName());
 			}
 		});
 
-		TableColumn<BasicGod, String> roleColumn = new TableColumn<>("Role");
-		roleColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, String>, ObservableValue<String>>() {
+		TableColumn<BasicGod, ImageBundle> iGodColumn = new TableColumn<>("Name");
+		iGodColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<BasicGod, String> p) {
-				return new SimpleStringProperty(p.getValue().getRole().name());
+			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getName(), new File("img/gods/" + p.getValue().getName().toLowerCase() + ".png").toURI().toString()));
 			}
 		});
 
-		TableColumn<BasicGod, String> powerTypeColumn = new TableColumn<>("Power Type");
-		powerTypeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, String>, ObservableValue<String>>() {
+		iGodColumn.setComparator(new Comparator<ImageBundle>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<BasicGod, String> p) {
-				return new SimpleStringProperty(p.getValue().getPowerType().name());
+			public int compare(ImageBundle ib1, ImageBundle ib2) {
+				return ib1.getText().compareTo(ib2.getText());
+			}
+
+		});
+
+		iGodColumn.setCellFactory(new Callback<TableColumn<BasicGod, ImageBundle>, TableCell<BasicGod, ImageBundle>>() {
+			@Override
+			public TableCell<BasicGod, ImageBundle> call(TableColumn<BasicGod, ImageBundle> param) {
+				TableCell<BasicGod, ImageBundle> cell = new TableCell<BasicGod, ImageBundle>() {
+					@Override
+					protected void updateItem(ImageBundle item, boolean empty) {
+						if (item != null) {
+							HBox hb = new HBox();
+							ImageView iv = new ImageView(item.getImageLocation());
+							Label godName = new Label(item.getText());
+							godName.setPadding(new Insets(0, 0, 0, 5));
+							hb.getChildren().addAll(iv, godName);
+							setGraphic(hb);
+						}
+					}
+				};
+				return cell;
+			}
+		});
+
+		TableColumn<BasicGod, ImageBundle> iRoleColumn = new TableColumn<>("Role");
+		iRoleColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
+			@Override
+			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getRole().name(), new File("img/roles/" + p.getValue().getRole().name().toLowerCase() + ".png").toURI().toString()));
+			}
+		});
+
+		iRoleColumn.setComparator(new Comparator<ImageBundle>() {
+			@Override
+			public int compare(ImageBundle ib1, ImageBundle ib2) {
+				return ib1.getText().compareTo(ib2.getText());
+			}
+
+		});
+
+		iRoleColumn.setCellFactory(new Callback<TableColumn<BasicGod, ImageBundle>, TableCell<BasicGod, ImageBundle>>() {
+			@Override
+			public TableCell<BasicGod, ImageBundle> call(TableColumn<BasicGod, ImageBundle> param) {
+				TableCell<BasicGod, ImageBundle> cell = new TableCell<BasicGod, ImageBundle>() {
+					@Override
+					protected void updateItem(ImageBundle item, boolean empty) {
+						if (item != null) {
+							HBox hb = new HBox();
+							ImageView iv = new ImageView(item.getImageLocation());
+							Label role = new Label(item.getText());
+							role.setPadding(new Insets(0, 0, 0, 5));
+							hb.getChildren().addAll(iv, role);
+							setGraphic(hb);
+						}
+					}
+				};
+				return cell;
 			}
 		});
 
 		TableColumn<BasicGod, ImageBundle> iPowerTypeColumn = new TableColumn<>("Power Type");
 		iPowerTypeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
-
 			@Override
 			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
-				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPowerType().name(), new File("img/" + p.getValue().getPowerType().name().toLowerCase() + "Type.png").toURI().toString()));
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPowerType().name(), new File("img/powertypes/" + p.getValue().getPowerType().name().toLowerCase() + "Type.png").toURI().toString()));
 			}
 		});
 
 		iPowerTypeColumn.setComparator(new Comparator<ImageBundle>() {
-
 			@Override
 			public int compare(ImageBundle ib1, ImageBundle ib2) {
 				return ib1.getText().compareTo(ib2.getText());
@@ -130,7 +184,6 @@ public class PageGodInfo extends Page {
 		});
 
 		iPowerTypeColumn.setCellFactory(new Callback<TableColumn<BasicGod, ImageBundle>, TableCell<BasicGod, ImageBundle>>() {
-
 			@Override
 			public TableCell<BasicGod, ImageBundle> call(TableColumn<BasicGod, ImageBundle> param) {
 				TableCell<BasicGod, ImageBundle> cell = new TableCell<BasicGod, ImageBundle>() {
@@ -140,6 +193,7 @@ public class PageGodInfo extends Page {
 							HBox hb = new HBox();
 							ImageView iv = new ImageView(item.getImageLocation());
 							Label powerType = new Label(item.getText());
+							powerType.setPadding(new Insets(0, 0, 0, 5));
 							hb.getChildren().addAll(iv, powerType);
 							setGraphic(hb);
 						}
@@ -149,11 +203,39 @@ public class PageGodInfo extends Page {
 			}
 		});
 
-		TableColumn<BasicGod, String> pantheonColumn = new TableColumn<>("Pantheon");
-		pantheonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, String>, ObservableValue<String>>() {
+		TableColumn<BasicGod, ImageBundle> iPantheonColumn = new TableColumn<>("Pantheon");
+		iPantheonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<BasicGod, String> p) {
-				return new SimpleStringProperty(p.getValue().getPantheon().name());
+			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPantheon().name(), new File("img/pantheons/" + p.getValue().getPantheon().name().toLowerCase() + ".png").toURI().toString()));
+			}
+		});
+
+		iPantheonColumn.setComparator(new Comparator<ImageBundle>() {
+			@Override
+			public int compare(ImageBundle ib1, ImageBundle ib2) {
+				return ib1.getText().compareTo(ib2.getText());
+			}
+
+		});
+
+		iPantheonColumn.setCellFactory(new Callback<TableColumn<BasicGod, ImageBundle>, TableCell<BasicGod, ImageBundle>>() {
+			@Override
+			public TableCell<BasicGod, ImageBundle> call(TableColumn<BasicGod, ImageBundle> param) {
+				TableCell<BasicGod, ImageBundle> cell = new TableCell<BasicGod, ImageBundle>() {
+					@Override
+					protected void updateItem(ImageBundle item, boolean empty) {
+						if (item != null) {
+							HBox hb = new HBox();
+							ImageView iv = new ImageView(item.getImageLocation());
+							Label pantheon = new Label(item.getText());
+							pantheon.setPadding(new Insets(0, 0, 0, 5));
+							hb.getChildren().addAll(iv, pantheon);
+							setGraphic(hb);
+						}
+					}
+				};
+				return cell;
 			}
 		});
 
@@ -167,9 +249,9 @@ public class PageGodInfo extends Page {
 
 		ObservableList<BasicGod> items = FXCollections.observableArrayList(GodUtil.gods);
 		final TableView<BasicGod> godTable = new TableView<>(items);
-		godTable.getColumns().setAll(roleNameColumn, roleColumn, iPowerTypeColumn, pantheonColumn, damageTypeColumn);
+		godTable.getColumns().setAll(iGodColumn, iRoleColumn, iPantheonColumn, iPowerTypeColumn, damageTypeColumn);
 		godTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		godTable.getSortOrder().add(roleNameColumn);
+		godTable.getSortOrder().add(godNameColumn);
 		HBox.setHgrow(godTable, Priority.ALWAYS);
 
 		return godTable;
