@@ -76,7 +76,7 @@ public class GodUtil {
 			break;
 		}
 
-		BasicGod god = new BasicGod(name, role, EnumPowerType.Physical, pantheon, damageType);
+		BasicGod god = new BasicGod(name, role, powerType, pantheon, damageType);
 
 		gods.add(god);
 		increaseRole(role, god);
