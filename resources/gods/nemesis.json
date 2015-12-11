@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Nemesis",
+		"role": "Assassin",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

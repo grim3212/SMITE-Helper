@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Hades",
+		"role": "Guardian",
+		"pantheon": "Greek",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

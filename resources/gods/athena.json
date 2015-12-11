@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Athena",
+		"role": "Guardian",
+		"pantheon": "Greek",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

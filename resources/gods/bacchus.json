@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Bacchus",
+		"role": "Guardian",
+		"pantheon": "Roman",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

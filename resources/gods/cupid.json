@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Cupid",
+		"role": "Hunter",
+		"pantheon": "Roman",
+		"powerType": "Physical",
+		"damageType": "Ranged"
+	}
+}

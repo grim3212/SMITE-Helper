@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Sobek",
+		"role": "Guardian",
+		"pantheon": "Egyptian",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

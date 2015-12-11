@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Ymir",
+		"role": "Guardian",
+		"pantheon": "Norse",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Hel",
+		"role": "Mage",
+		"pantheon": "Norse",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

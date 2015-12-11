@@ -1,10 +1,14 @@
 package grim3212.java.smitehelper.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Scanner;
+
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import grim3212.java.smitehelper.gods.BasicGod;
 import grim3212.java.smitehelper.gods.EnumDamageType;
@@ -16,15 +20,25 @@ public class GodUtil {
 
 	public static void createGodData() {
 		try {
-			Scanner scanner = new Scanner(new File("godInfo.csv"));
+			File f = new File("resources/gods/");
+			ArrayList<File> names = new ArrayList<File>(Arrays.asList(f.listFiles()));
+			for (int i = 0; i < names.size(); i++) {
+				String extension = names.get(i).getName().substring(names.get(i).getName().lastIndexOf('.') + 1);
 
-			while (scanner.hasNextLine()) {
-				String[] god = scanner.nextLine().split(",");
+				if (extension.equals("json")) {
+					FileInputStream fileIn = new FileInputStream(names.get(i));
+					JSONObject obj = new JSONObject(new JSONTokener(fileIn));
 
-				GodUtil.registerGod(god);
+					BasicGod god = new BasicGod(obj.getJSONObject("godInfo").getString("name"), obj.getJSONObject("godInfo").getString("role"), obj.getJSONObject("godInfo").getString("pantheon"), obj.getJSONObject("godInfo").getString("powerType"), obj.getJSONObject("godInfo").getString("damageType"));
+
+					gods.add(god);
+					increaseRole(god.getRole(), god);
+					increasePantheon(god.getPantheon(), god);
+					increasePowerType(god.getPowerType(), god);
+					increaseDamageType(god.getDamageType(), god);
+				}
 			}
 
-			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -49,40 +63,6 @@ public class GodUtil {
 		statistics.put("# of " + EnumDamageType.Melee + " gods", damageTypes.get(EnumDamageType.Melee).size());
 		statistics.put("# of " + EnumDamageType.Ranged + " gods", damageTypes.get(EnumDamageType.Ranged).size());
 		statistics.put("Gamemodes", EnumGamemodes.values().length);
-	}
-
-	public static void registerGod(String[] godData) {
-		String name = godData[0];
-		EnumRole role = EnumRole.valueOf(godData[1]);
-		EnumPantheon pantheon = EnumPantheon.valueOf(godData[2]);
-		EnumDamageType damageType = EnumDamageType.valueOf(godData[3]);
-		EnumPowerType powerType = null;
-
-		switch (role) {
-		case Assassin:
-			powerType = EnumPowerType.Physical;
-			break;
-		case Guardian:
-			powerType = EnumPowerType.Magical;
-			break;
-		case Hunter:
-			powerType = EnumPowerType.Physical;
-			break;
-		case Mage:
-			powerType = EnumPowerType.Magical;
-			break;
-		case Warrior:
-			powerType = EnumPowerType.Physical;
-			break;
-		}
-
-		BasicGod god = new BasicGod(name, role, powerType, pantheon, damageType);
-
-		gods.add(god);
-		increaseRole(role, god);
-		increasePantheon(pantheon, god);
-		increasePowerType(powerType, god);
-		increaseDamageType(damageType, god);
 	}
 
 	public static void increaseRole(EnumRole role, BasicGod god) {

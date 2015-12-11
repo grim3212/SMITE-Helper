@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Isis",
+		"role": "Mage",
+		"pantheon": "Egyptian",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

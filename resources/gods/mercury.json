@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Mercury",
+		"role": "Assassin",
+		"pantheon": "Roman",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

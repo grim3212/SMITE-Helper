@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Vulcan",
+		"role": "Mage",
+		"pantheon": "Roman",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

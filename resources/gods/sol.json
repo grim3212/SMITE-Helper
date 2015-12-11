@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Sol",
+		"role": "Mage",
+		"pantheon": "Norse",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Vamana",
+		"role": "Warrior",
+		"pantheon": "Hindu",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

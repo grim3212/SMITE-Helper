@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Kali",
+		"role": "Assassin",
+		"pantheon": "Hindu",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

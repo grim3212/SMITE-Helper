@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Ullr",
+		"role": "Hunter",
+		"pantheon": "Norse",
+		"powerType": "Physical",
+		"damageType": "Ranged"
+	}
+}

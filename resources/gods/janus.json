@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Janus",
+		"role": "Mage",
+		"pantheon": "Roman",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

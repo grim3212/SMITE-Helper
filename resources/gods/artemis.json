@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Artemis",
+		"role": "Hunter",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Ranged"
+	}
+}

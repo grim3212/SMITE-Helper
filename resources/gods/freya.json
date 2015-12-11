@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Freya",
+		"role": "Mage",
+		"pantheon": "Norse",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Thanatos",
+		"role": "Assassin",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

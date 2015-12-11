@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Arachne",
+		"role": "Assassin",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

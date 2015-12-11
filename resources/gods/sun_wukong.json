@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Sun Wukong",
+		"role": "Warrior",
+		"pantheon": "Chinese",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

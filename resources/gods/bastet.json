@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Bastet",
+		"role": "Assassin",
+		"pantheon": "Egyptian",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

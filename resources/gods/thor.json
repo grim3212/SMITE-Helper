@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Thor",
+		"role": "Assassin",
+		"pantheon": "Norse",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

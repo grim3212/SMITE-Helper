@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Hercules",
+		"role": "Warrior",
+		"pantheon": "Roman",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

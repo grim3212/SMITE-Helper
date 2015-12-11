@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Scylla",
+		"role": "Mage",
+		"pantheon": "Greek",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

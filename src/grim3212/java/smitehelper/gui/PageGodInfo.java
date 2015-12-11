@@ -99,7 +99,7 @@ public class PageGodInfo extends Page {
 		iGodColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
 			@Override
 			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
-				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getName(), new File("img/gods/" + p.getValue().getName().toLowerCase() + ".png").toURI().toString()));
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getName(), new File("resources/images/gods/" + p.getValue().getName().toLowerCase() + ".png").toURI().toString()));
 			}
 		});
 
@@ -135,7 +135,7 @@ public class PageGodInfo extends Page {
 		iRoleColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
 			@Override
 			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
-				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getRole().name(), new File("img/roles/" + p.getValue().getRole().name().toLowerCase() + ".png").toURI().toString()));
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getRole().name(), new File("resources/images/roles/" + p.getValue().getRole().name().toLowerCase() + ".png").toURI().toString()));
 			}
 		});
 
@@ -171,7 +171,7 @@ public class PageGodInfo extends Page {
 		iPowerTypeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
 			@Override
 			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
-				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPowerType().name(), new File("img/powertypes/" + p.getValue().getPowerType().name().toLowerCase() + "Type.png").toURI().toString()));
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPowerType().name(), new File("resources/images/powertypes/" + p.getValue().getPowerType().name().toLowerCase() + "Type.png").toURI().toString()));
 			}
 		});
 
@@ -207,7 +207,7 @@ public class PageGodInfo extends Page {
 		iPantheonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<BasicGod, ImageBundle>, ObservableValue<ImageBundle>>() {
 			@Override
 			public ObservableValue<ImageBundle> call(TableColumn.CellDataFeatures<BasicGod, ImageBundle> p) {
-				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPantheon().name(), new File("img/pantheons/" + p.getValue().getPantheon().name().toLowerCase() + ".png").toURI().toString()));
+				return new SimpleObjectProperty<ImageBundle>(new ImageBundle(p.getValue().getPantheon().name(), new File("resources/images/pantheons/" + p.getValue().getPantheon().name().toLowerCase() + ".png").toURI().toString()));
 			}
 		});
 

@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Anubis",
+		"role": "Mage",
+		"pantheon": "Egyptian",
+		"powerType": "Magical",
+		"damageType": "Ranged"
+	}
+}

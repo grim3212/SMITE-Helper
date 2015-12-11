@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Medusa",
+		"role": "Hunter",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Ranged"
+	}
+}

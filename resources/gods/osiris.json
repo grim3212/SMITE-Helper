@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Osiris",
+		"role": "Warrior",
+		"pantheon": "Egyptian",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

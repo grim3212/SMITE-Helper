@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Khepri",
+		"role": "Guardian",
+		"pantheon": "Egyptian",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

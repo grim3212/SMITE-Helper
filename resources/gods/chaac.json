@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Chaac",
+		"role": "Warrior",
+		"pantheon": "Mayan",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

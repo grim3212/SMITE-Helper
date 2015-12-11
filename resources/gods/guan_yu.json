@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Guan Yu",
+		"role": "Warrior",
+		"pantheon": "Chinese",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

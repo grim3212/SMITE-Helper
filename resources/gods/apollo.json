@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Apollo",
+		"role": "Hunter",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Ranged"
+	}
+}

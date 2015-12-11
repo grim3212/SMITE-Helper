@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Ravana",
+		"role": "Warrior",
+		"pantheon": "Hindu",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

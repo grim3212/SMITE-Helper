@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Fenrir",
+		"role": "Assassin",
+		"pantheon": "Norse",
+		"powerType": "Physical",
+		"damageType": "Melee"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Ares",
+		"role": "Guardian",
+		"pantheon": "Greek",
+		"powerType": "Magical",
+		"damageType": "Melee"
+	}
+}

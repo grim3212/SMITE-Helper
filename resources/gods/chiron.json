@@ -1,0 +1,9 @@
+{
+	"godInfo": {
+		"name": "Chiron",
+		"role": "Hunter",
+		"pantheon": "Greek",
+		"powerType": "Physical",
+		"damageType": "Ranged"
+	}
+}
