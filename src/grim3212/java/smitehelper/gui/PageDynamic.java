@@ -4,19 +4,19 @@ import grim3212.java.smitehelper.util.Constants;
 import grim3212.java.smitehelper.util.FileUtil;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
-public abstract class Page implements IPage {
+public class PageDynamic implements IPage {
 
-	public Page() {
-		setupPage(false);
+	private String pageName;
+
+	public PageDynamic(String pageName) {
+		this.pageName = pageName;
+		setupPage();
 	}
 
-	public Page(boolean isHome) {
-		setupPage(isHome);
-	}
-
-	private void setupPage(boolean isHome) {
+	private void setupPage() {
 		BorderPane dynamicContainer = new BorderPane();
 		dynamicContainer.setPadding(new Insets(25, 25, 0, 25));
 		Scene dynamicPage = new Scene(dynamicContainer, 80 * Constants.rem, 50 * Constants.rem);
@@ -28,14 +28,22 @@ public abstract class Page implements IPage {
 
 		populatePage(dynamicContainer, dynamicPage);
 
-		if (!isHome)
-			dynamicContainer.setBottom(PageUtil.createBackButton());
+		dynamicContainer.setBottom(PageUtil.createBackButton());
 	}
 
 	@Override
-	public abstract void populatePage(BorderPane container, Scene scene);
+	public void populatePage(BorderPane container, Scene scene) {
+
+		Button btn = new Button("click");
+		btn.setOnAction(event -> {
+			System.out.print(getPageName());
+		});
+
+	}
 
 	@Override
-	public abstract String getPageName();
+	public String getPageName() {
+		return this.pageName;
+	}
 
 }

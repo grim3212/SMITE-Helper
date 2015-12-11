@@ -1,25 +1,31 @@
 package grim3212.java.smitehelper.gui.tablestuff;
 
 import grim3212.java.smitehelper.gods.BasicGod;
+import grim3212.java.smitehelper.gui.PageUtil;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.TextFlow;
 
 public class ImageTableCell extends TableCell<BasicGod, ImageBundle> {
 
 	private HBox hb;
 	private ImageView image;
-	private Label godName;
+	private TextFlow text;
+	private Hyperlink link;
 
 	public ImageTableCell() {
 		hb = new HBox();
 		image = new ImageView();
-		godName = new Label();
-		godName.setPadding(new Insets(0, 0, 0, 5));
-		hb.getChildren().addAll(image, godName);
+		text = new TextFlow();
+		link = new Hyperlink();
+		text.setPadding(new Insets(0, 0, 0, 5));
+		hb.getChildren().addAll(image, text);
 		setGraphic(hb);
 	}
 
@@ -28,10 +34,17 @@ public class ImageTableCell extends TableCell<BasicGod, ImageBundle> {
 		if (item != null) {
 			if (item.getImageLocation() != null) {
 				image.setImage(new Image(item.getImageLocation()));
-				godName.setText(item.getText());
-			} else {
-				godName.setText(item.getText());
 			}
+			link.setText(item.getText());
+			link.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					PageUtil.switchPage(item.getText(), true);
+					((Hyperlink) event.getTarget()).setVisited(false);
+				}
+			});
+			text.getChildren().clear();
+			text.getChildren().add(link);
 		}
 	}
 }

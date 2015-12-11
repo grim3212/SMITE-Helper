@@ -20,40 +20,21 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class PageRandomizer extends Page {
 
 	private Random rand;
 
-	public PageRandomizer(Stage primaryStage) {
-		super(primaryStage);
+	public PageRandomizer() {
 		rand = new Random();
 	}
 
 	@Override
-	public void setupPage(Stage primaryStage) {
-		BorderPane randBorderPane = new BorderPane();
-		randBorderPane.setPadding(new Insets(25, 25, 0, 25));
-		Scene randScene = new Scene(randBorderPane, 80 * Constants.rem, 50 * Constants.rem);
-		randScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-		PageUtil.registerPage(this, randScene);
-
-		HBox titleBox = new HBox();
-		titleBox.setAlignment(Pos.TOP_CENTER);
-		Text randomizerTitle = new Text(getPageName());
-		randomizerTitle.setFont(Font.font("Tahoma", FontWeight.EXTRA_BOLD, 40));
-		randomizerTitle.maxWidth(Double.MAX_VALUE);
-		randomizerTitle.maxHeight(Double.MAX_VALUE);
-		titleBox.getChildren().add(randomizerTitle);
-		randBorderPane.setTop(titleBox);
-
+	public void populatePage(BorderPane container, Scene scene) {
 		BorderPane randCenter = new BorderPane();
 		randCenter.setPadding(new Insets(45, 25, 25, 25));
 
@@ -72,27 +53,7 @@ public class PageRandomizer extends Page {
 		setupGamemodePane(tabs, currentSelection);
 
 		randCenter.setCenter(tabs);
-
-		randBorderPane.setCenter(randCenter);
-
-		HBox bottomBox = new HBox();
-		bottomBox.setAlignment(Pos.CENTER);
-		HBox.setHgrow(bottomBox, Priority.ALWAYS);
-		bottomBox.setPadding(new Insets(15, 60, 25, 60));
-
-		Button homeBtn = new Button("<-- Back");
-		homeBtn.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-		homeBtn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-		homeBtn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				PageUtil.switchPage(Constants.HOME_NAME, primaryStage);
-			}
-		});
-		HBox.setHgrow(homeBtn, Priority.ALWAYS);
-
-		bottomBox.getChildren().addAll(homeBtn);
-		randBorderPane.setBottom(bottomBox);
+		container.setCenter(randCenter);
 	}
 
 	@Override
