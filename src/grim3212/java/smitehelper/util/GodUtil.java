@@ -6,15 +6,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeMap;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import grim3212.java.smitehelper.gods.BasicGod;
-import grim3212.java.smitehelper.gods.EnumDamageType;
-import grim3212.java.smitehelper.gods.EnumPantheon;
-import grim3212.java.smitehelper.gods.EnumPowerType;
-import grim3212.java.smitehelper.gods.EnumRole;
 
 public class GodUtil {
 
@@ -29,7 +27,7 @@ public class GodUtil {
 					FileInputStream fileIn = new FileInputStream(names.get(i));
 					JSONObject obj = new JSONObject(new JSONTokener(fileIn));
 
-					BasicGod god = new BasicGod(obj.getJSONObject("godInfo").getString("name"), obj.getJSONObject("godInfo").getString("role"), obj.getJSONObject("godInfo").getString("pantheon"), obj.getJSONObject("godInfo").getString("powerType"), obj.getJSONObject("godInfo").getString("damageType"));
+					BasicGod god = new BasicGod(obj.getJSONObject("godInfo").getString("name"), obj.getJSONObject("godInfo").getString("role"), obj.getJSONObject("godInfo").getString("pantheon"), obj.getJSONObject("godInfo").getString("powerType"), obj.getJSONObject("godInfo").getString("damageType"), obj.getJSONObject("resources"));
 
 					gods.add(god);
 					increaseRole(god.getRole(), god);
@@ -45,27 +43,37 @@ public class GodUtil {
 	}
 
 	public static ArrayList<BasicGod> gods = new ArrayList<BasicGod>();
-	public static HashMap<EnumRole, ArrayList<BasicGod>> roles = new HashMap<EnumRole, ArrayList<BasicGod>>();
-	public static HashMap<EnumPowerType, ArrayList<BasicGod>> powerTypes = new HashMap<EnumPowerType, ArrayList<BasicGod>>();
-	public static HashMap<EnumPantheon, ArrayList<BasicGod>> pantheons = new HashMap<EnumPantheon, ArrayList<BasicGod>>();
-	public static HashMap<EnumDamageType, ArrayList<BasicGod>> damageTypes = new HashMap<EnumDamageType, ArrayList<BasicGod>>();
+	public static TreeMap<String, ArrayList<BasicGod>> roles = new TreeMap<String, ArrayList<BasicGod>>();
+	public static TreeMap<String, ArrayList<BasicGod>> powerTypes = new TreeMap<String, ArrayList<BasicGod>>();
+	public static TreeMap<String, ArrayList<BasicGod>> pantheons = new TreeMap<String, ArrayList<BasicGod>>();
+	public static TreeMap<String, ArrayList<BasicGod>> damageTypes = new TreeMap<String, ArrayList<BasicGod>>();
 
 	public static HashMap<String, Integer> statistics = new HashMap<String, Integer>();
 
 	public static void createStatistics() {
 		statistics.put("Gods", gods.size());
-		statistics.put("Roles", EnumRole.values().length);
-		statistics.put("Pantheons", EnumPantheon.values().length);
-		statistics.put("Power Types", EnumPowerType.values().length);
-		statistics.put("# of " + EnumPowerType.Magical + " gods", powerTypes.get(EnumPowerType.Magical).size());
-		statistics.put("# of " + EnumPowerType.Physical + " gods", powerTypes.get(EnumPowerType.Physical).size());
-		statistics.put("Damage Types", EnumDamageType.values().length);
-		statistics.put("# of " + EnumDamageType.Melee + " gods", damageTypes.get(EnumDamageType.Melee).size());
-		statistics.put("# of " + EnumDamageType.Ranged + " gods", damageTypes.get(EnumDamageType.Ranged).size());
+		statistics.put("Roles", roles.keySet().size());
+		statistics.put("Pantheons", pantheons.keySet().size());
+		statistics.put("Power Types", powerTypes.keySet().size());
+
+		Iterator<String> pitr = powerTypes.keySet().iterator();
+		while (pitr.hasNext()) {
+			String key = (String) pitr.next();
+			statistics.put("# of " + key + " gods", powerTypes.get(key).size());
+		}
+
+		statistics.put("Damage Types", damageTypes.keySet().size());
+
+		Iterator<String> ditr = damageTypes.keySet().iterator();
+		while (ditr.hasNext()) {
+			String key = (String) ditr.next();
+			statistics.put("# of " + key + " gods", damageTypes.get(key).size());
+		}
+
 		statistics.put("Gamemodes", EnumGamemodes.values().length);
 	}
 
-	public static void increaseRole(EnumRole role, BasicGod god) {
+	public static void increaseRole(String role, BasicGod god) {
 		if (roles.containsKey(role)) {
 			roles.get(role).add(god);
 		} else {
@@ -75,7 +83,7 @@ public class GodUtil {
 		}
 	}
 
-	public static void increasePantheon(EnumPantheon pantheon, BasicGod god) {
+	public static void increasePantheon(String pantheon, BasicGod god) {
 		if (pantheons.containsKey(pantheon)) {
 			pantheons.get(pantheon).add(god);
 		} else {
@@ -85,7 +93,7 @@ public class GodUtil {
 		}
 	}
 
-	public static void increasePowerType(EnumPowerType powerType, BasicGod god) {
+	public static void increasePowerType(String powerType, BasicGod god) {
 		if (powerTypes.containsKey(powerType)) {
 			powerTypes.get(powerType).add(god);
 		} else {
@@ -95,7 +103,7 @@ public class GodUtil {
 		}
 	}
 
-	public static void increaseDamageType(EnumDamageType damageType, BasicGod god) {
+	public static void increaseDamageType(String damageType, BasicGod god) {
 		if (damageTypes.containsKey(damageType)) {
 			damageTypes.get(damageType).add(god);
 		} else {

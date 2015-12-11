@@ -1,4 +1,4 @@
-package grim3212.java.smitehelper.gui;
+package grim3212.java.smitehelper.gui.tablestuff;
 
 public class ImageBundle {
 

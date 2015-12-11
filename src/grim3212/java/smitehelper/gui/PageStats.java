@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import grim3212.java.smitehelper.gods.BasicGod;
-import grim3212.java.smitehelper.gods.EnumPantheon;
-import grim3212.java.smitehelper.gods.EnumRole;
 import grim3212.java.smitehelper.util.Constants;
 import grim3212.java.smitehelper.util.EnumGamemodes;
 import grim3212.java.smitehelper.util.GodUtil;
@@ -81,25 +79,25 @@ public class PageStats extends Page {
 	}
 
 	@SuppressWarnings("unchecked")
-	public TableView<Map.Entry<EnumRole, ArrayList<BasicGod>>> getRoleTable() {
-		TableColumn<Map.Entry<EnumRole, ArrayList<BasicGod>>, String> roleNameColumn = new TableColumn<>("Role");
-		roleNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<EnumRole, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
+	public TableView<Map.Entry<String, ArrayList<BasicGod>>> getRoleTable() {
+		TableColumn<Map.Entry<String, ArrayList<BasicGod>>, String> roleNameColumn = new TableColumn<>("Role");
+		roleNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<EnumRole, ArrayList<BasicGod>>, String> p) {
-				return new SimpleStringProperty(p.getValue().getKey().name());
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String> p) {
+				return new SimpleStringProperty(p.getValue().getKey());
 			}
 		});
 
-		TableColumn<Map.Entry<EnumRole, ArrayList<BasicGod>>, String> numGodsColumn = new TableColumn<>("# of Gods");
-		numGodsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<EnumRole, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
+		TableColumn<Map.Entry<String, ArrayList<BasicGod>>, String> numGodsColumn = new TableColumn<>("# of Gods");
+		numGodsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<EnumRole, ArrayList<BasicGod>>, String> p) {
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String> p) {
 				return new SimpleStringProperty(((Integer) p.getValue().getValue().size()).toString());
 			}
 		});
 
-		ObservableList<Map.Entry<EnumRole, ArrayList<BasicGod>>> items = FXCollections.observableArrayList(GodUtil.roles.entrySet());
-		final TableView<Map.Entry<EnumRole, ArrayList<BasicGod>>> rolesTable = new TableView<>(items);
+		ObservableList<Map.Entry<String, ArrayList<BasicGod>>> items = FXCollections.observableArrayList(GodUtil.roles.entrySet());
+		final TableView<Map.Entry<String, ArrayList<BasicGod>>> rolesTable = new TableView<>(items);
 		rolesTable.getColumns().setAll(roleNameColumn, numGodsColumn);
 		rolesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		rolesTable.getSortOrder().add(roleNameColumn);
@@ -109,25 +107,25 @@ public class PageStats extends Page {
 	}
 
 	@SuppressWarnings("unchecked")
-	public TableView<Map.Entry<EnumPantheon, ArrayList<BasicGod>>> getPantheonTable() {
-		TableColumn<Map.Entry<EnumPantheon, ArrayList<BasicGod>>, String> pantheonNameColumn = new TableColumn<>("Pantheon");
-		pantheonNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<EnumPantheon, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
+	public TableView<Map.Entry<String, ArrayList<BasicGod>>> getPantheonTable() {
+		TableColumn<Map.Entry<String, ArrayList<BasicGod>>, String> pantheonNameColumn = new TableColumn<>("Pantheon");
+		pantheonNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<EnumPantheon, ArrayList<BasicGod>>, String> p) {
-				return new SimpleStringProperty(p.getValue().getKey().name());
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String> p) {
+				return new SimpleStringProperty(p.getValue().getKey());
 			}
 		});
 
-		TableColumn<Map.Entry<EnumPantheon, ArrayList<BasicGod>>, String> numGodsColumn = new TableColumn<>("# of Gods");
-		numGodsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<EnumPantheon, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
+		TableColumn<Map.Entry<String, ArrayList<BasicGod>>, String> numGodsColumn = new TableColumn<>("# of Gods");
+		numGodsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String>, ObservableValue<String>>() {
 			@Override
-			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<EnumPantheon, ArrayList<BasicGod>>, String> p) {
+			public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, ArrayList<BasicGod>>, String> p) {
 				return new SimpleStringProperty(((Integer) p.getValue().getValue().size()).toString());
 			}
 		});
 
-		ObservableList<Map.Entry<EnumPantheon, ArrayList<BasicGod>>> items = FXCollections.observableArrayList(GodUtil.pantheons.entrySet());
-		final TableView<Map.Entry<EnumPantheon, ArrayList<BasicGod>>> pantheonTable = new TableView<>(items);
+		ObservableList<Map.Entry<String, ArrayList<BasicGod>>> items = FXCollections.observableArrayList(GodUtil.pantheons.entrySet());
+		final TableView<Map.Entry<String, ArrayList<BasicGod>>> pantheonTable = new TableView<>(items);
 		pantheonTable.getColumns().setAll(pantheonNameColumn, numGodsColumn);
 		pantheonTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		pantheonTable.getSortOrder().add(pantheonNameColumn);

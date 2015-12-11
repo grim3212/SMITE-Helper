@@ -5,5 +5,9 @@
 		"pantheon": "Norse",
 		"powerType": "Physical",
 		"damageType": "Melee"
+	},
+	
+	"resources": {
+		"smallIcon": "resources/images/gods/20px/odin.png"
 	}
 }

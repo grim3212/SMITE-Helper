@@ -1,11 +1,8 @@
 package grim3212.java.smitehelper.gui;
 
+import java.util.Iterator;
 import java.util.Random;
 
-import grim3212.java.smitehelper.gods.EnumDamageType;
-import grim3212.java.smitehelper.gods.EnumPantheon;
-import grim3212.java.smitehelper.gods.EnumPowerType;
-import grim3212.java.smitehelper.gods.EnumRole;
 import grim3212.java.smitehelper.util.Constants;
 import grim3212.java.smitehelper.util.EnumGamemodes;
 import grim3212.java.smitehelper.util.GodUtil;
@@ -136,10 +133,14 @@ public class PageRandomizer extends Page {
 		VBox roles = new VBox(10);
 		roles.setAlignment(Pos.CENTER_LEFT);
 		ToggleGroup roleGroup = new ToggleGroup();
-		for (int i = 0; i < EnumRole.values().length; i++) {
-			RadioButton radioBtn = new RadioButton(EnumRole.values()[i].name());
+
+		Iterator<String> itr = GodUtil.roles.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+
+			RadioButton radioBtn = new RadioButton(key);
 			radioBtn.setToggleGroup(roleGroup);
-			radioBtn.setUserData(EnumRole.values()[i]);
+			radioBtn.setUserData(key);
 			roles.getChildren().add(radioBtn);
 		}
 
@@ -177,11 +178,15 @@ public class PageRandomizer extends Page {
 
 		VBox pantheons = new VBox(10);
 		pantheons.setAlignment(Pos.CENTER_LEFT);
-		ToggleGroup roleGroup = new ToggleGroup();
-		for (int i = 0; i < EnumPantheon.values().length; i++) {
-			RadioButton radioBtn = new RadioButton(EnumPantheon.values()[i].name());
-			radioBtn.setToggleGroup(roleGroup);
-			radioBtn.setUserData(EnumPantheon.values()[i]);
+		ToggleGroup pantheonGroup = new ToggleGroup();
+
+		Iterator<String> itr = GodUtil.pantheons.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+
+			RadioButton radioBtn = new RadioButton(key);
+			radioBtn.setToggleGroup(pantheonGroup);
+			radioBtn.setUserData(key);
 			pantheons.getChildren().add(radioBtn);
 		}
 
@@ -190,9 +195,9 @@ public class PageRandomizer extends Page {
 		randomizeBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if (roleGroup.getSelectedToggle() != null) {
-					int godNum = rand.nextInt(GodUtil.pantheons.get(roleGroup.getSelectedToggle().getUserData()).size());
-					currentSelection.setText("God Selected: " + GodUtil.pantheons.get(roleGroup.getSelectedToggle().getUserData()).get(godNum).getName());
+				if (pantheonGroup.getSelectedToggle() != null) {
+					int godNum = rand.nextInt(GodUtil.pantheons.get(pantheonGroup.getSelectedToggle().getUserData()).size());
+					currentSelection.setText("God Selected: " + GodUtil.pantheons.get(pantheonGroup.getSelectedToggle().getUserData()).get(godNum).getName());
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("God Randomizer | By Pantheon");
@@ -220,10 +225,14 @@ public class PageRandomizer extends Page {
 		VBox damageTypes = new VBox(10);
 		damageTypes.setAlignment(Pos.CENTER_LEFT);
 		ToggleGroup damageGroup = new ToggleGroup();
-		for (int i = 0; i < EnumDamageType.values().length; i++) {
-			RadioButton radioBtn = new RadioButton(EnumDamageType.values()[i].name());
+
+		Iterator<String> itr = GodUtil.damageTypes.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+
+			RadioButton radioBtn = new RadioButton(key);
 			radioBtn.setToggleGroup(damageGroup);
-			radioBtn.setUserData(EnumDamageType.values()[i]);
+			radioBtn.setUserData(key);
 			damageTypes.getChildren().add(radioBtn);
 		}
 
@@ -262,10 +271,14 @@ public class PageRandomizer extends Page {
 		VBox powerTypes = new VBox(10);
 		powerTypes.setAlignment(Pos.CENTER_LEFT);
 		ToggleGroup powerGroup = new ToggleGroup();
-		for (int i = 0; i < EnumPowerType.values().length; i++) {
-			RadioButton radioBtn = new RadioButton(EnumPowerType.values()[i].name());
+
+		Iterator<String> itr = GodUtil.powerTypes.keySet().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+
+			RadioButton radioBtn = new RadioButton(key);
 			radioBtn.setToggleGroup(powerGroup);
-			radioBtn.setUserData(EnumPowerType.values()[i]);
+			radioBtn.setUserData(key);
 			powerTypes.getChildren().add(radioBtn);
 		}
 

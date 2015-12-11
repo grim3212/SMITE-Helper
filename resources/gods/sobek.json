@@ -5,5 +5,9 @@
 		"pantheon": "Egyptian",
 		"powerType": "Magical",
 		"damageType": "Melee"
+	},
+	
+	"resources": {
+		"smallIcon": "resources/images/gods/20px/sobek.png"
 	}
 }

@@ -5,5 +5,9 @@
 		"pantheon": "Greek",
 		"powerType": "Magical",
 		"damageType": "Ranged"
+	},
+	
+	"resources": {
+		"smallIcon": "resources/images/gods/20px/hades.png"
 	}
 }
